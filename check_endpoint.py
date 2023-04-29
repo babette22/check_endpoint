@@ -1,14 +1,62 @@
 import requests
+import boto3
+from botocore.exceptions import ClientError
 
 url_set = ['https://www.google.com', 'https://www.netflix.com', 'http://uber.net', 'http://upmenu.org', 'https://www.youtube.com']
 
-for _url in url_set:
+url_down= []
+
+for url in url_set:
     try:
-        response = requests.get(_url)
+        response = requests.get(url)
         _code = response.status_code
         if _code == 200:
-            print(f"{_url} is up and running")
+            print(f"{url} is up and running")
         else: 
-            print(f"{_url} is down!!")
+            print(f"{url} is down!!")
+            url_down.append(url)
     except:
-        print(f"The url of {_url} is not good")
+        print(f"The url of {url} is not good")
+
+def send_mail():
+    # set a verified email address of dev team
+    RECIPIENT = ["<SET A VERIFIED EMAIL OF DEV TEAM>"] # ["estephe.kana@utrains.org"]
+    # set your verified sender email address
+    SENDER = "<SET A VERIFIED SENDER EMAIL>" # for my case kanaestephe@gmail.com
+    SUBJECT = "List of endpoints down"
+    BODY_TEXT = (f"""
+    Hello Development team, 
+    Here is a list of endpoints that are down from the list passed as input: 
+    {url_down}""")           
+    CHARSET = "UTF-8"
+    ses_client = boto3.client('ses')
+    try:
+        response = ses_client.send_email(
+            Destination={
+                'ToAddresses': RECIPIENT,
+            },
+            Message={
+                'Body': {
+                    'Text': {
+                        'Charset': CHARSET,
+                        'Data': BODY_TEXT,
+                    },
+                },
+                'Subject': {
+                    'Charset': CHARSET,
+                    'Data': SUBJECT,
+                },
+            },
+            Source=SENDER,
+        )
+    except ClientError as e:
+        print(e.response['Error']['Message'])
+    else:
+        print(f"Email sent! Message ID: {response['MessageId']}")
+
+# send an email to the dev team if any url is found down
+
+if url_down:
+    send_mail()
+else:
+    print("All the endpoints are up and running !!!")  
