@@ -56,7 +56,7 @@ def send_mail():
 
 # send an email to the dev team if any url is found down
 
-if url_down:
+if url_broke:
     send_mail()
 else:
     print("All the endpoints are up and running !!!")  
