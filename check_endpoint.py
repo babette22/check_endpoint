@@ -4,7 +4,7 @@ from botocore.exceptions import ClientError
 
 url_set = ['https://www.google.com', 'https://www.netflix.com', 'http://uber.net', 'http://upmenu.org', 'https://www.youtube.com']
 
-url_down= []
+url_broke= []
 
 for url in url_set:
     try:
@@ -14,9 +14,9 @@ for url in url_set:
             print(f"{url} is up and running")
         else: 
             print(f"{url} is down!!")
-            url_down.append(url)
     except:
         print(f"The url of {url} is not good")
+        url_broke.append(url)
 
 def send_mail():
     # set a verified email address of dev team
@@ -27,7 +27,7 @@ def send_mail():
     BODY_TEXT = (f"""
     Hello Development team, 
     Here is a list of endpoints that are down from the list passed as input: 
-    {url_down}""")           
+    {url_broke}""")           
     CHARSET = "UTF-8"
     ses_client = boto3.client('ses')
     try:
