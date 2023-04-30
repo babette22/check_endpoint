@@ -25,7 +25,7 @@ def send_mail():
     SENDER = "kanaestephe@gmail.com" # "<SET A VERIFIED SENDER EMAIL>"
     SUBJECT = "List of endpoints down"
     BODY_TEXT = (f"""
-    Hello Development team, 
+    Hello all, 
     Here is a list of endpoints that are down from the list passed as input: 
     {url_broke}""")           
     CHARSET = "UTF-8"
