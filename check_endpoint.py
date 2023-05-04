@@ -1,4 +1,5 @@
 import requests
+import urllib3
 import boto3
 from botocore.exceptions import ClientError
 
