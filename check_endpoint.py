@@ -1,5 +1,4 @@
 import requests
-import urllib3
 import boto3
 from botocore.exceptions import ClientError
 
@@ -10,8 +9,8 @@ url_broke= []
 for url in url_set:
     try:
         response = requests.get(url)
-        _code = response.status_code
-        if _code == 200:
+        code = response.status_code
+        if code == 200:
             print(f"{url} is up and running")
         else: 
             print(f"{url} is down!!")
