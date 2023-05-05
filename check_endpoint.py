@@ -15,7 +15,7 @@ for url in url_set:
         else: 
             print(f"{url} is down!!")
     except:
-        print(f"The url of {url} is not good")
+        print(f"The url of {url} is unreachable")
         url_broke.append(url)
 
 def send_mail():
