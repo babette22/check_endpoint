@@ -20,9 +20,9 @@ for url in url_set:
 
 def send_mail():
     # set a verified email address of dev team
-    RECIPIENT = ["estephe.kana@utrains.org"] # ["<SET A VERIFIED EMAIL OF DEV TEAM>"]
+    RECIPIENT = ["kenfack.b81@gmail.com"] # ["<SET A VERIFIED EMAIL OF DEV TEAM>"]
     # set your verified sender email address
-    SENDER = "kanaestephe@gmail.com" # "<SET A VERIFIED SENDER EMAIL>"
+    SENDER = "kenfack.b81@gmail.com" # "<SET A VERIFIED SENDER EMAIL>"
     SUBJECT = "List of endpoints down"
     BODY_TEXT = (f"""
     Hello all, 
